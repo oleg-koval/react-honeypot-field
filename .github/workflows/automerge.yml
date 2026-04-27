@@ -1,0 +1,29 @@
+name: PR Automerge (bots)
+
+on:
+  pull_request:
+    types: [opened, synchronize, reopened, ready_for_review]
+  check_suite:
+    types: [completed]
+  status: {}
+
+jobs:
+  automerge:
+    name: Automerge bot PRs
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write
+      pull-requests: write
+
+    steps:
+      - uses: oleg-koval/pr-automerge-github-action@main
+        with:
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          bot-logins: |
+            dependabot[bot]
+            renovate[bot]
+            snyk-bot
+          maintainer-handles: |
+            oleg-koval
+          merge-method: squash
+          wait-timeout: 30m

@@ -1,0 +1,9 @@
+bot-logins:
+  - dependabot[bot]
+  - renovate[bot]
+  - snyk-bot
+maintainer-handles:
+  - oleg-koval
+merge-method: squash
+wait-timeout: 30m
+dry-run: false
