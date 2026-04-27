@@ -1,6 +1,6 @@
 {
   "name": "react-honeypot-field",
-  "version": "0.0.0-development",
+  "version": "1.0.0",
   "description": "Lightweight React honeypot field with time-threshold bot detection. Zero dependencies. TypeScript-first.",
   "type": "module",
   "sideEffects": false,
