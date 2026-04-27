@@ -57,7 +57,6 @@ describe("useHoneypot", () => {
 
     // Simulate a bot filling the field
     const fakeInput = { value: "http://spam.com" } as HTMLInputElement;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (result.current.fieldProps.ref as any).current = fakeInput;
 
     const validation = result.current.validate();
@@ -73,7 +72,6 @@ describe("useHoneypot", () => {
 
     // Filled AND too fast — filled reason should win
     const fakeInput = { value: "spam" } as HTMLInputElement;
-    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     (result.current.fieldProps.ref as any).current = fakeInput;
 
     act(() => vi.advanceTimersByTime(500));

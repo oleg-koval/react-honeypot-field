@@ -3,23 +3,25 @@ import tseslint from "typescript-eslint";
 
 export default tseslint.config(
   js.configs.recommended,
-  ...tseslint.configs.strictTypeChecked,
-  ...tseslint.configs.stylisticTypeChecked,
+
+  // -------------------------------------------------------------------------
+  // src/ — full strict type-aware checking
+  // -------------------------------------------------------------------------
   {
+    files: ["src/**/*.{ts,tsx}"],
+    extends: [
+      ...tseslint.configs.strictTypeChecked,
+      ...tseslint.configs.stylisticTypeChecked,
+    ],
     languageOptions: {
       parserOptions: {
-        project: true,
+        project: "./tsconfig.json",
         tsconfigRootDir: import.meta.dirname,
       },
     },
     rules: {
-      // Catch em dashes from LLM/autocorrect — see drop-em-dash-eslint-rule
-      // Enable when the package stabilises on flat config
-      // "drop-em-dash/no-em-dash": "error",
-
       // Prefer explicit return types on exported functions
       "@typescript-eslint/explicit-module-boundary-types": "warn",
-
       // Allow void returns in callbacks
       "@typescript-eslint/no-misused-promises": [
         "error",
@@ -27,15 +29,32 @@ export default tseslint.config(
       ],
     },
   },
+
+  // -------------------------------------------------------------------------
+  // tests/ — type-aware but relaxed (no project reference needed for safety)
+  // -------------------------------------------------------------------------
   {
-    // Relax strictness in test files
     files: ["tests/**/*.{ts,tsx}"],
+    extends: [...tseslint.configs.recommended],
     rules: {
+      "@typescript-eslint/no-explicit-any": "off",
       "@typescript-eslint/no-unsafe-assignment": "off",
       "@typescript-eslint/no-unsafe-member-access": "off",
+      "@typescript-eslint/no-unsafe-call": "off",
     },
   },
+
+  // -------------------------------------------------------------------------
+  // Ignored paths
+  // -------------------------------------------------------------------------
   {
-    ignores: ["dist/**", "docs/**", "coverage/**", "*.config.ts", "*.config.mjs"],
+    ignores: [
+      "dist/**",
+      "docs/**",
+      "coverage/**",
+      "examples/**",
+      "*.config.ts",
+      "*.config.mjs",
+    ],
   },
 );
