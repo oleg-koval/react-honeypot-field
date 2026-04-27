@@ -48,9 +48,10 @@ export function ContactForm() {
           _mountedAt: mountedAt,
           // Honeypot field value comes from the form data automatically,
           // but you can also pass it explicitly:
-          website: fieldProps.ref && "current" in fieldProps.ref
-            ? (fieldProps.ref.current?.value ?? "")
-            : "",
+          website:
+            fieldProps.ref && "current" in fieldProps.ref
+              ? (fieldProps.ref.current?.value ?? "")
+              : "",
         }),
       });
 

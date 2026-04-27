@@ -24,12 +24,12 @@ assignees: oleg-koval
 
 ## Environment
 
-| | |
-|---|---|
-| `react-honeypot-field` version | |
-| React version | |
-| Node version | |
-| Browser / runtime | |
+|                                |     |
+| ------------------------------ | --- |
+| `react-honeypot-field` version |     |
+| React version                  |     |
+| Node version                   |     |
+| Browser / runtime              |     |
 
 ## Additional context
 

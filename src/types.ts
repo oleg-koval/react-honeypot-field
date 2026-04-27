@@ -8,16 +8,16 @@ export type HoneypotResult =
   | { ok: true }
   | { ok: false; reason: HoneypotFailReason };
 
-export type HoneypotFailReason =
-  | "honeypot_filled"
-  | "submitted_too_fast";
+export type HoneypotFailReason = "honeypot_filled" | "submitted_too_fast";
 
 // ---------------------------------------------------------------------------
 // Component props
 // ---------------------------------------------------------------------------
 
-export interface HoneypotFieldProps
-  extends Omit<InputHTMLAttributes<HTMLInputElement>, "type" | "tabIndex"> {
+export interface HoneypotFieldProps extends Omit<
+  InputHTMLAttributes<HTMLInputElement>,
+  "type" | "tabIndex"
+> {
   /** Hidden field name. Avoid "honeypot" — bots know that word.
    *  @default "website" */
   name?: string;
@@ -64,9 +64,7 @@ export interface UseHoneypotReturn {
 // Server-side validation
 // ---------------------------------------------------------------------------
 
-export type ServerHoneypotFailReason =
-  | HoneypotFailReason
-  | "missing_timestamp";
+export type ServerHoneypotFailReason = HoneypotFailReason | "missing_timestamp";
 
 export type ServerHoneypotResult =
   | { ok: true }

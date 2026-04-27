@@ -1,7 +1,4 @@
-import type {
-  ServerHoneypotOptions,
-  ServerHoneypotResult,
-} from "./types.js";
+import type { ServerHoneypotOptions, ServerHoneypotResult } from "./types.js";
 
 /**
  * Server-side honeypot validation.

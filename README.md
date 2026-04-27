@@ -21,10 +21,10 @@ Bots that blindly fill every form field will fill the hidden honeypot input. Bot
 
 Two techniques, one tiny package:
 
-| Technique | How | Why |
-|-----------|-----|-----|
-| Hidden field | Off-screen via CSS (`position: absolute; left: -9999px`) | `display:none` fields are skipped by some bots — off-screen ones are not |
-| Time threshold | Tracks mount timestamp, validates elapsed time on submit | Legitimate users need time to read and type; bots submit instantly |
+| Technique      | How                                                      | Why                                                                      |
+| -------------- | -------------------------------------------------------- | ------------------------------------------------------------------------ |
+| Hidden field   | Off-screen via CSS (`position: absolute; left: -9999px`) | `display:none` fields are skipped by some bots — off-screen ones are not |
+| Time threshold | Tracks mount timestamp, validates elapsed time on submit | Legitimate users need time to read and type; bots submit instantly       |
 
 ---
 
@@ -55,7 +55,7 @@ export function ContactForm() {
 
   return (
     <form onSubmit={handleSubmit}>
-      <HoneypotField {...fieldProps} />  {/* invisible to humans */}
+      <HoneypotField {...fieldProps} /> {/* invisible to humans */}
       {/* your real fields */}
     </form>
   );
@@ -70,8 +70,8 @@ export async function POST(req: Request) {
   const body = await req.json();
 
   const hp = validateHoneypot({
-    fieldValue: body.website,        // honeypot field value
-    mountedAt: body._mountedAt,      // timestamp from client
+    fieldValue: body.website, // honeypot field value
+    mountedAt: body._mountedAt, // timestamp from client
     submittedAt: Date.now(),
   });
 
@@ -92,17 +92,17 @@ Renders an off-screen text input. Spread `fieldProps` from `useHoneypot()` onto 
 import { HoneypotField } from "react-honeypot-field";
 
 <HoneypotField
-  name="website"                    // field name in form data (default: "website")
-  label="Do not fill this field"    // screen-reader label (default shown)
-  tabIndex={-1}                     // keeps it out of tab order (default: -1)
-/>
+  name="website" // field name in form data (default: "website")
+  label="Do not fill this field" // screen-reader label (default shown)
+  tabIndex={-1} // keeps it out of tab order (default: -1)
+/>;
 ```
 
-| Prop | Type | Default | Description |
-|------|------|---------|-------------|
-| `name` | `string` | `"website"` | Field name. Avoid "honeypot" — bots know that word. |
-| `label` | `string` | `"Do not fill this field"` | Text for the `<label>` element. |
-| `tabIndex` | `number` | `-1` | Keeps the field out of keyboard tab order. |
+| Prop       | Type     | Default                    | Description                                         |
+| ---------- | -------- | -------------------------- | --------------------------------------------------- |
+| `name`     | `string` | `"website"`                | Field name. Avoid "honeypot" — bots know that word. |
+| `label`    | `string` | `"Do not fill this field"` | Text for the `<label>` element.                     |
+| `tabIndex` | `number` | `-1`                       | Keeps the field out of keyboard tab order.          |
 
 All other `<input>` attributes are forwarded to the underlying element.
 
@@ -114,18 +114,18 @@ All other `<input>` attributes are forwarded to the underlying element.
 import { useHoneypot } from "react-honeypot-field";
 
 const { fieldProps, validate, mountedAt } = useHoneypot({
-  fieldName: "website",   // default: "website"
-  timeThreshold: 1500,    // ms, default: 1500
+  fieldName: "website", // default: "website"
+  timeThreshold: 1500, // ms, default: 1500
 });
 ```
 
 Returns:
 
-| Key | Type | Description |
-|-----|------|-------------|
-| `fieldProps` | `{ ref, name }` | Spread onto `<HoneypotField />` |
-| `validate()` | `() => HoneypotResult` | Call before submitting. Returns `{ ok: true }` or `{ ok: false, reason }` |
-| `mountedAt` | `number` | Unix timestamp (ms) when hook mounted. Send to server for time-threshold check. |
+| Key          | Type                   | Description                                                                     |
+| ------------ | ---------------------- | ------------------------------------------------------------------------------- |
+| `fieldProps` | `{ ref, name }`        | Spread onto `<HoneypotField />`                                                 |
+| `validate()` | `() => HoneypotResult` | Call before submitting. Returns `{ ok: true }` or `{ ok: false, reason }`       |
+| `mountedAt`  | `number`               | Unix timestamp (ms) when hook mounted. Send to server for time-threshold check. |
 
 `HoneypotResult`:
 
@@ -143,10 +143,10 @@ type HoneypotResult =
 import { validateHoneypot } from "react-honeypot-field/validate";
 
 const result = validateHoneypot({
-  fieldValue: body.website,       // string | null | undefined
-  mountedAt: body._mountedAt,     // number | null
-  submittedAt: Date.now(),        // number | null
-  timeThreshold: 1500,            // ms, default: 1500
+  fieldValue: body.website, // string | null | undefined
+  mountedAt: body._mountedAt, // number | null
+  submittedAt: Date.now(), // number | null
+  timeThreshold: 1500, // ms, default: 1500
 });
 
 if (!result.ok) {
@@ -171,7 +171,7 @@ const onSubmit = handleSubmit((data) => {
   // ...
 });
 
-<HoneypotField {...fieldProps} />
+<HoneypotField {...fieldProps} />;
 ```
 
 ### With Formik
@@ -181,12 +181,15 @@ const { fieldProps, validate } = useHoneypot();
 
 <Formik
   onSubmit={(values, { setSubmitting }) => {
-    if (!validate().ok) { setSubmitting(false); return; }
+    if (!validate().ok) {
+      setSubmitting(false);
+      return;
+    }
     // ...
   }}
 >
   <HoneypotField {...fieldProps} />
-</Formik>
+</Formik>;
 ```
 
 ### Express / Hono server
@@ -226,6 +229,7 @@ Throwing on validation failure means you need try/catch in your submit handler. 
 ## Limitations
 
 Honeypot protection adds friction — it is not a hard barrier. A sophisticated bot that:
+
 - Detects off-screen elements and skips them, or
 - Deliberately waits before submitting
 
