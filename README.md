@@ -1,5 +1,9 @@
 # react-honeypot-field
 
+<p align="center">
+  <img src="./icon.png" alt="react-honeypot-field icon" width="160" height="160" />
+</p>
+
 [![npm](https://img.shields.io/npm/v/react-honeypot-field?color=F25A1D&label=npm)](https://www.npmjs.com/package/react-honeypot-field)
 [![CI](https://github.com/oleg-koval/react-honeypot-field/actions/workflows/code-quality.yml/badge.svg)](https://github.com/oleg-koval/react-honeypot-field/actions/workflows/code-quality.yml)
 [![Coverage](https://coveralls.io/repos/github/oleg-koval/react-honeypot-field/badge.svg?branch=main)](https://coveralls.io/github/oleg-koval/react-honeypot-field?branch=main)

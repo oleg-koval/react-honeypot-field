@@ -45,7 +45,8 @@
   "types": "./dist/index.d.ts",
   "files": [
     "dist",
-    "CHANGELOG.md"
+    "CHANGELOG.md",
+    "icon.png"
   ],
   "peerDependencies": {
     "react": ">=18.0.0"
@@ -78,7 +79,7 @@
   },
   "scripts": {
     "build": "tsup",
-    "build:docs": "typedoc --out docs/api src/index.ts",
+    "build:docs": "typedoc --out docs/api --favicon icon.png src/index.ts",
     "typecheck": "tsc --noEmit",
     "lint": "eslint src tests",
     "lint:fix": "eslint src tests --fix",
