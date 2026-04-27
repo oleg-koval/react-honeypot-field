@@ -2,7 +2,7 @@
 
 [![npm](https://img.shields.io/npm/v/react-honeypot-field?color=F25A1D&label=npm)](https://www.npmjs.com/package/react-honeypot-field)
 [![CI](https://github.com/oleg-koval/react-honeypot-field/actions/workflows/code-quality.yml/badge.svg)](https://github.com/oleg-koval/react-honeypot-field/actions/workflows/code-quality.yml)
-[![Coverage](https://codecov.io/gh/oleg-koval/react-honeypot-field/branch/main/graph/badge.svg)](https://codecov.io/gh/oleg-koval/react-honeypot-field)
+[![Coverage](https://coveralls.io/repos/github/oleg-koval/react-honeypot-field/badge.svg?branch=main)](https://coveralls.io/github/oleg-koval/react-honeypot-field?branch=main)
 [![License: MIT](https://img.shields.io/badge/license-MIT-062F34)](LICENSE)
 [![Node](https://img.shields.io/node/v/react-honeypot-field)](package.json)
 [![TypeScript](https://img.shields.io/badge/TypeScript-strict-3178c6)](tsconfig.json)
